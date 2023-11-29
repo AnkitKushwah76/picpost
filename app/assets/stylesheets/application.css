@@ -1,0 +1,81 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ body{
+  margin-bottom: 60px;
+ }
+.avatar {
+  border: 0.3rem solid rgba(#fff, 0.3);
+  margin-top: -4rem;
+  margin-bottom: 1rem;
+  width: 5rem;
+  height: 5rem;
+  object-fit: cover;
+}
+.user-icon{
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  font-size: 20px;
+  border-radius: 50%;
+}
+.user-info-wrap{
+  border-bottom: 1px solid #ccc;
+  border-radius: 16px 16px 0 0;
+}
+.image-wrap{
+  width: 600px;
+  height: 400px;
+  object-fit: cover;
+}
+.post-card{
+  border-radius: 16px;
+}
+.image-box{
+  background-color: #f9f9f9;
+}
+.comment-box{
+  background-color: #f5f4f4;
+  border-radius: 10px;
+}
+.comment-text{
+  flex: 1;
+}
+.comment-link{
+  text-decoration: none;
+}
+.custom-header{
+  position: sticky;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 9;
+}
+.custom-footer{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.btn-style button{
+  display:none;
+}
+.delete-icon{
+  font-size: 24px !important;
+}
+.form-modal-content{
+  min-height: 300px;
+  overflow-y: auto;
+}

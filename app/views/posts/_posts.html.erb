@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8 col-sm-8 col-md-8 col-lg-8 mx-auto">
+    <% @posts.each do |post| %>
+      <%= content_tag :div, id: dom_id(post), class: ["card", "card-body", "mb-2", dom_class(post)] do %>
+        <div>
+          <div class="card post-card mt-4">
+              <div class="d-flex align-items-center justify-content-between user-info-wrap py-2 px-4 bg-dark">
+                <div class="d-flex align-items-center">
+                  <i class="fa fa-user user-icon d-flex justify-content-center align-items-center me-3"></i>
+                <strong class="card-text text-white"> <%= post.user.username %></strong>
+                </div>
+                <% if current_user.id == post.user.id%>
+                  <%= button_to post_path(post), method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: 'text-decoration-none' do %>
+                      <i class="fa fa-trash text-danger delete-icon"></i>
+                  <% end %>
+                <%end%>
+              </div>
+
+              <p class="card-text px-4 pt-3"><%= post.caption %></p>
+              <div class="mb-3">
+                <div class="image-box text-center py-4"><%= image_tag post.image, class: "image-wrap" if post.image.attached? %></div>
+                <div class="card-body px-4">
+
+                  <div class="d-flex align-items-center">
+                    <h6 class="card-subtitle text-muted mb-2">Comments:</h6>
+                  </div>
+                <% post.comments.order(created_at: :desc).limit(2).each do |comment| %>
+                  <div class="d-flex p-2 comment-box">
+                    <i class="fa fa-user user-icon d-flex justify-content-center align-items-center me-3 bg-dark text-white"></i>
+                    <strong class="card-text text-dark"> <%= comment.user.username %> : </strong>
+                    <p class="m-0 px-2 comment-text"><%= comment.content %> </p>
+                    <%=comment.created_at.strftime("%d %b %Y %H:%M:%S") %>
+                  </div>
+                  <br>
+                <% end %>
+
+                </div>
+                <%= link_to new_post_comment_path(post_id: post.id), remote: 'true', class: 'comment-link d-flex justify-content-center align-items-center me-3 text-primary' do %>
+                  <span class= "me-2">Add Comment</span> 
+                  <i class="fa fa-comment"></i>
+                <%end%>
+              </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render partial: "comment_modal"%>

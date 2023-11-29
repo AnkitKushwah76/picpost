@@ -1,0 +1,3 @@
+$('#exampleModal-body').html("<%= escape_javascript(render partial: 'form', local: { post: @post, comment: @comment }) %>")
+$('#modal_header').text('All Comments')
+$('#exampleModal').modal('show');

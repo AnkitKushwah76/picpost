@@ -1,0 +1,7 @@
+<% if @post.errors.any? %>
+  $('#exampleModal-body').html("<%= escape_javascript(render partial: 'form', local: { post: @post }) %>")
+  $('#modal_header').text('New Post')
+  $('#exampleModal').modal('show');
+<% else %>
+  window.location.href = "<%= my_posts_posts_url %>";
+<% end %>

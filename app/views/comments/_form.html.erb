@@ -1,0 +1,26 @@
+<%= form_with(model: @comment, url: post_comments_path(@post),  method: :post) do |form| %>
+
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  <div class="form-group">
+
+    <% @post.comments.each do|comment| %>
+      <% if comment.id.present?%>
+        <div class="d-flex p-2 comment-box mb-2">
+            <i class="fa fa-user user-icon d-flex justify-content-center align-items-center me-3 bg-dark text-white"></i>
+            <strong class="card-text text-dark"> <%= comment.user&.username%> : </strong>
+            <p class="m-0 px-2 comment-text"><%= comment&.content %> </p>
+            <%=comment.created_at&.strftime("%d %b %Y %H:%M:%S") %>
+        </div>
+      <%end%>
+    <%end%>
+  </div>
+
+  <div class="modal-footer">
+    <%= form.label :content, class: "text-info" do %>
+       Add Comment 
+    <% end %><br>
+    <%= form.text_area :content, class: "form-control" %>
+    <%= form.button "Close", type: "reset", class: "btn btn-secondary", data: { dismiss: "modal" } %>
+    <%= form.submit "Submit", class: "btn btn-primary", id: "submit" %>
+  </div>
+<% end %>

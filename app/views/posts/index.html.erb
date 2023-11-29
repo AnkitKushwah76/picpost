@@ -1,0 +1,9 @@
+<div data-controller="scroll">
+  <div data-scroll-target="entries">
+    <%= render 'posts' %>
+  </div>
+
+  <div data-scroll-target="pagination">
+    <% pagy_nav @pagy %>
+  </div>
+</div>

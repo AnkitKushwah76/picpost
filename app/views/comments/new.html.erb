@@ -1,0 +1,26 @@
+<div class="modal fade" id="addBookDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="text-center text-info">Add Comment</h4>
+      </div>
+      <div class="modal-body">
+          <%= form_with(model: [ @post, Comment.new ], local: true) do |form| %>
+
+          <%= form.hidden_field :post_id, value: @post.id %>
+          <%= form.hidden_field :user_id, value: @post.user.id %>
+
+          <div class="form-group">
+            <%= form.label :content, "Content:" %>
+            <%= form.text_area :content, class: "form-control" %>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <%= form.submit "Submit", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
